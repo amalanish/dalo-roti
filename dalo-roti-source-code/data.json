@@ -1,0 +1,111 @@
+{
+  "donations": [
+    {
+      "id": "don-1",
+      "donorName": "Green Garden Restaurant",
+      "donorPhone": "+1 555-0199",
+      "foodItem": "Vegetable Biryani and Raita",
+      "foodType": "veg",
+      "category": "cooked",
+      "quantity": "25 Meals",
+      "expiryHours": 8,
+      "address": "452 Oak Avenue, Downtown",
+      "status": "claimed",
+      "claimedBy": "Hope Orphanage Home",
+      "otp": "4821",
+      "timeOffsetMinutesCreated": -45,
+      "createdAt": "2026-08-15T05:26:39.380Z",
+      "expiryTime": "2026-08-15T13:26:39.380Z"
+    },
+    {
+      "id": "don-2",
+      "donorName": "Royal Catering Services",
+      "donorPhone": "+1 555-0144",
+      "foodItem": "Grilled Chicken and Bread Rolls",
+      "foodType": "non-veg",
+      "category": "cooked",
+      "quantity": "50 Portions",
+      "expiryHours": 6,
+      "address": "88 Grand Plaza, Sector 4",
+      "status": "claimed",
+      "claimedBy": "Hope Orphanage Home",
+      "otp": "9052",
+      "timeOffsetMinutesCreated": -90,
+      "createdAt": "2026-08-15T04:41:39.380Z",
+      "expiryTime": "2026-08-15T10:41:39.380Z"
+    },
+    {
+      "id": "don-3",
+      "donorName": "Metro Supermarket",
+      "donorPhone": "+1 555-0188",
+      "foodItem": "Fresh Apples and Bananas (Surplus crate)",
+      "foodType": "veg",
+      "category": "raw",
+      "quantity": "15 kg",
+      "expiryHours": 48,
+      "address": "12 Mall Road, Westside",
+      "status": "pending",
+      "claimedBy": null,
+      "otp": "7133",
+      "timeOffsetMinutesCreated": -120,
+      "createdAt": "2026-08-15T04:11:39.380Z",
+      "expiryTime": "2026-08-17T04:11:39.380Z"
+    }
+  ],
+  "needs": [
+    {
+      "id": "need-1",
+      "orgName": "Hope Orphanage Home",
+      "contact": "+1 555-0101",
+      "needType": "raw",
+      "items": "Rice, Wheat Flour, and Cooking Oil for 45 children",
+      "urgency": "high",
+      "timeOffsetMinutesCreated": -240,
+      "createdAt": "2026-08-15T02:11:39.380Z"
+    },
+    {
+      "id": "need-2",
+      "orgName": "Care Foundation NGO",
+      "contact": "+1 555-0122",
+      "needType": "cooked",
+      "items": "Hot dinner meals for 60 homeless people tonight",
+      "urgency": "medium",
+      "timeOffsetMinutesCreated": -100,
+      "createdAt": "2026-08-15T04:31:39.380Z"
+    }
+  ],
+  "ngos": [
+    {
+      "id": "ngo-1",
+      "name": "R.K Homes",
+      "phone": "+91 98765 43210",
+      "address": "Worli East, Mumbai",
+      "town": "Worli East",
+      "details": "Orphanage home"
+    },
+    {
+      "id": "ngo-2",
+      "name": "Raja Foundations",
+      "phone": "+91 99887 76655",
+      "address": "Dadar East, Mumbai",
+      "town": "Dadar East",
+      "details": "Hope children's home"
+    },
+    {
+      "id": "ngo-3",
+      "name": "Sunrise Orphanage",
+      "phone": "+91 88776 65544",
+      "address": "Bandra, Mumbai",
+      "town": "Bandra",
+      "details": "Volunteering care home"
+    },
+    {
+      "id": "ngo-4",
+      "name": "Hope Children's Home",
+      "phone": "+91 77665 54433",
+      "address": "Sector 12, Greenfield",
+      "town": "Greenfield",
+      "details": "Orphanage"
+    }
+  ]
+}

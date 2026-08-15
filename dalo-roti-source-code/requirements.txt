@@ -1,0 +1,2 @@
+# This application relies entirely on the Python Standard Library.
+# No external packages are required to run.

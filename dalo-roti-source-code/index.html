@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dalo Roti - Share surplus food with NGOs and Orphanages to make an impact.">
+    <title>Dalo Roti | Food Donation App</title>
+    <!-- Google Fonts: Inter or similar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- MOBILE SHELL OVERLAY FOR APP CONTROLLER -->
+    <div class="phone-shell">
+        
+        <!-- SCREEN 1: LOGIN -->
+        <section id="screen-login" class="app-screen active">
+            <div class="screen-header-bar">
+                <button class="back-btn"><i data-lucide="arrow-left"></i></button>
+            </div>
+            
+            <div class="login-welcome-section">
+                <div class="logo-box">
+                    <img src="logo.png" alt="Dalo Roti Logo" class="logo-img">
+                </div>
+                <h1>Welcome Back</h1>
+                <p class="subtitle">Log in to continue sharing meals and making an impact.</p>
+            </div>
+
+            <form id="login-form" onsubmit="handleLoginSubmit(event)">
+                <div class="input-group">
+                    <label for="login-mobile">Mobile Number</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="user" class="input-icon"></i>
+                        <input type="tel" id="login-mobile" required placeholder="Enter your Mobile Number">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock" class="input-icon"></i>
+                        <input type="password" id="login-password" required placeholder="Enter your password">
+                        <button type="button" class="eye-toggle" onclick="togglePasswordVisibility('login-password', this)">
+                            <i data-lucide="eye-off"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="forgot-link-wrapper">
+                    <a href="#" class="forgot-link" onclick="showToast('Forgot password triggered', 'info')">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <span>Log In</span> <i data-lucide="log-in" class="btn-arrow"></i>
+                </button>
+            </form>
+
+            <div class="login-seed-hints" style="margin-top: 1.5rem;">
+                <p><strong>Demo Login Credentials:</strong></p>
+                <div class="hint-chips" style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                    <span class="hint-chip" onclick="fillDemoLogin('9820098200', 'password321')" style="background: rgba(22, 83, 53, 0.08); border: 1px solid var(--color-primary); color: var(--color-primary); padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 700;">Log In as Amal (9820098200)</span>
+                </div>
+            </div>
+
+            <div class="screen-footer">
+                Don't have an account? <a href="#" class="green-link" onclick="navigateToScreen('signup')">Sign Up</a>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: SIGN UP -->
+        <section id="screen-signup" class="app-screen">
+            <div class="screen-header-bar flex-between">
+                <button class="back-btn" onclick="navigateToScreen('login')"><i data-lucide="arrow-left"></i></button>
+                <div class="small-header-logo">
+                    <img src="logo.png" alt="Dalo Roti Logo" class="logo-img-small">
+                    <span>Dalo Roti</span>
+                </div>
+                <div style="width: 24px;"></div> <!-- Spacer -->
+            </div>
+
+            <div class="signup-container-card">
+                <h1>Join our Community</h1>
+                <p class="subtitle">Start sharing meals and making an impact today.</p>
+
+                <form id="signup-form" onsubmit="handleSignupSubmit(event)">
+                    <div class="input-group">
+                        <label for="signup-name">Full Name</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="user" class="input-icon"></i>
+                            <input type="text" id="signup-name" required placeholder="John Doe">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="signup-mobile">Mobile Number</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="phone" class="input-icon"></i>
+                            <input type="tel" id="signup-mobile" required placeholder="+1 (555) 000-0000">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="signup-address">Address</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="map-pin" class="input-icon"></i>
+                            <input type="text" id="signup-address" required placeholder="123 Street Name, City">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="signup-password">Password</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="lock" class="input-icon"></i>
+                            <input type="password" id="signup-password" required placeholder="........">
+                            <button type="button" class="eye-toggle" onclick="togglePasswordVisibility('signup-password', this)">
+                                <i data-lucide="eye-off"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <!-- Shield/check lock icon -->
+                            <i data-lucide="shield-check" class="input-icon"></i>
+                            <input type="password" id="signup-confirm" required placeholder="........">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit dark-btn">
+                        Sign Up
+                    </button>
+                </form>
+            </div>
+
+            <div class="screen-footer">
+                Already have an account? <a href="#" class="green-link bold-link" onclick="navigateToScreen('login')">Log In</a>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: HOME DASHBOARD -->
+        <section id="screen-home" class="app-screen">
+            <!-- App Top Header -->
+            <header class="app-top-nav">
+                <div class="top-nav-brand">
+                    <img src="logo.png" alt="Dalo Roti Logo" class="logo-img-nav">
+                    <h2>Dalo Roti</h2>
+                </div>
+                <div class="profile-dropdown-wrapper">
+                    <button class="avatar-btn" onclick="toggleProfileDropdown(event)">
+                        <div class="user-avatar-small header-avatar-initial">A</div>
+                    </button>
+                    <div class="profile-dropdown-content">
+                        <div class="dropdown-user-info">
+                            <div class="large-avatar">A</div>
+                            <div class="info-text">
+                                <strong class="dropdown-user-name">Amal</strong>
+                                <span class="dropdown-user-phone">+91 98200 98200</span>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item" onclick="showProfileDetails(event)"><i data-lucide="user"></i> View Profile</a>
+                        <a href="#" class="dropdown-item" onclick="navigateToScreen('donate'); closeAllDropdowns();"><i data-lucide="plus-circle"></i> Donate Food</a>
+                        <a href="#" class="dropdown-item" onclick="navigateToScreen('pickups'); closeAllDropdowns();"><i data-lucide="truck"></i> Track Pickups</a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item logout-item" onclick="logout(); closeAllDropdowns();"><i data-lucide="log-out"></i> Log Out</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-greeting">
+                <h1 id="home-user-name">Hi Amal</h1>
+                <p>Let's make a difference in our community today.</p>
+            </div>
+
+            <!-- Stats Stack -->
+            <div class="stats-stack">
+                <div class="stat-card color-circle-green">
+                    <div class="stat-icon-wrapper">
+                        <i data-lucide="hand-heart" class="text-green-icon"></i>
+                    </div>
+                    <div class="stat-card-details">
+                        <span class="stat-number">1,240</span>
+                        <span class="stat-title">Meals Shared This Month</span>
+                    </div>
+                    <div class="decorative-shape shape-green"></div>
+                </div>
+
+                <div class="stat-card color-circle-brown">
+                    <div class="stat-icon-wrapper">
+                        <i data-lucide="leaf" class="text-brown-icon"></i>
+                    </div>
+                    <div class="stat-card-details">
+                        <span class="stat-number">850 kg</span>
+                        <span class="stat-title">Food Waste Prevented</span>
+                    </div>
+                    <div class="decorative-shape shape-brown"></div>
+                </div>
+
+                <div class="stat-card color-circle-green2">
+                    <div class="stat-icon-wrapper">
+                        <i data-lucide="users-2" class="text-green-icon"></i>
+                    </div>
+                    <div class="stat-card-details">
+                        <span class="stat-number">100</span>
+                        <span class="stat-title">Partner NGOs</span>
+                    </div>
+                    <div class="decorative-shape shape-green2"></div>
+                </div>
+            </div>
+
+            <!-- Urgent Needs Section -->
+            <div class="urgent-needs-header">
+                <h3>Nearby Urgent Needs</h3>
+                <button class="btn-view-map" onclick="showToast('Map View Loading...', 'info')">
+                    <i data-lucide="map"></i> View Map
+                </button>
+            </div>
+
+            <div class="urgent-needs-feed">
+                <!-- Card 1 -->
+                <div class="need-card-item">
+                    <div class="need-card-top">
+                        <div class="need-image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=150&auto=format&fit=crop');">
+                        </div>
+                        <div class="need-card-text">
+                            <div class="title-badge-row">
+                                <span class="need-title">R.K HOMES</span>
+                                <span class="badge-priority">High Priority</span>
+                            </div>
+                            <div class="need-address-row">
+                                <i data-lucide="map-pin"></i>
+                                <span>Near Birla Estate, Worli East, Mumbai, Maharashtra</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="need-card-progress">
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 40%;"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span>pending=40</span>
+                            <span>Total person=100</span>
+                        </div>
+                    </div>
+                    <button class="btn-donate-card" onclick="navigateToScreen('donate')">Donate</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="need-card-item">
+                    <div class="need-card-top">
+                        <div class="need-logo-placeholder">
+                            <div class="logo-circle-green">
+                                <i data-lucide="home"></i>
+                            </div>
+                            <span class="logo-label">ORPHANAGE</span>
+                        </div>
+                        <div class="need-card-text">
+                            <div class="title-badge-row">
+                                <span class="need-title">RAJA FOUNDATIONS</span>
+                                <span class="badge-priority">High Priority</span>
+                            </div>
+                            <p class="need-subtitle">Hope Children's Home</p>
+                            <div class="need-address-row">
+                                <i data-lucide="map-pin"></i>
+                                <span>Dadar East, Mumbai, Maharashtra</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="need-card-progress">
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 75%;"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span>pending=75</span>
+                            <span>Total person=100</span>
+                        </div>
+                    </div>
+                    <button class="btn-donate-card" onclick="navigateToScreen('donate')">Donate</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: DONATE FOOD FORM -->
+        <section id="screen-donate" class="app-screen">
+            <header class="app-top-nav-close">
+                <button class="close-btn" onclick="navigateToScreen('home')"><i data-lucide="x"></i></button>
+                <h2>Dalo Roti</h2>
+                <div class="profile-dropdown-wrapper">
+                    <button class="avatar-btn" onclick="toggleProfileDropdown(event)">
+                        <div class="user-avatar-small header-avatar-initial">A</div>
+                    </button>
+                    <div class="profile-dropdown-content">
+                        <div class="dropdown-user-info">
+                            <div class="large-avatar">A</div>
+                            <div class="info-text">
+                                <strong class="dropdown-user-name">Amal</strong>
+                                <span class="dropdown-user-phone">+91 98200 98200</span>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item" onclick="showProfileDetails(event)"><i data-lucide="user"></i> View Profile</a>
+                        <a href="#" class="dropdown-item" onclick="navigateToScreen('donate'); closeAllDropdowns();"><i data-lucide="plus-circle"></i> Donate Food</a>
+                        <a href="#" class="dropdown-item" onclick="navigateToScreen('pickups'); closeAllDropdowns();"><i data-lucide="truck"></i> Track Pickups</a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item logout-item" onclick="logout(); closeAllDropdowns();"><i data-lucide="log-out"></i> Log Out</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="donate-header">
+                <h1>Donate Food</h1>
+                <p>Fill out the details below to share food with those in need.</p>
+            </div>
+
+            <form id="food-donation-form" onsubmit="handleFoodDonation(event)">
+                <!-- Section: Donor Information -->
+                <div class="form-section-title">Donor Information</div>
+                <div class="form-card-box">
+                    <div class="input-group">
+                        <label for="donor-full-name">Your Name</label>
+                        <input type="text" id="donor-full-name" required placeholder="e.g., Jane Doe">
+                    </div>
+                    <div class="input-group">
+                        <label for="donor-full-address">Your Address</label>
+                        <input type="text" id="donor-full-address" required placeholder="e.g., 123 Green Street, City">
+                    </div>
+                    <div class="input-group">
+                        <label for="donor-phone-num">Phone Number</label>
+                        <input type="tel" id="donor-phone-num" required placeholder="e.g., +1 234 567 8900">
+                    </div>
+                </div>
+
+                <!-- Section: Pickup Schedule -->
+                <div class="form-section-title">Pickup Schedule</div>
+                <div class="form-card-box">
+                    <div class="grid-schedule">
+                        <div class="input-group no-margin">
+                            <label for="pickup-date">Pickup Date</label>
+                            <div class="input-wrapper-schedule">
+                                <input type="text" id="pickup-date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" placeholder="Select Date" required>
+                                <i data-lucide="calendar" class="schedule-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-group no-margin">
+                            <label for="pickup-time">Pickup Time</label>
+                            <div class="time-input-group">
+                                <div class="input-wrapper-schedule flex-grow">
+                                    <input type="text" id="pickup-time" onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'" placeholder="Time" required>
+                                    <i data-lucide="clock" class="schedule-icon"></i>
+                                </div>
+                                <div class="ampm-toggle">
+                                    <button type="button" id="ampm-am" class="ampm-btn active" onclick="setAmPm('AM')">AM</button>
+                                    <button type="button" id="ampm-pm" class="ampm-btn" onclick="setAmPm('PM')">PM</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Food Items -->
+                <div class="form-section-title">Food Items</div>
+                <div class="form-card-box" id="food-items-container">
+                    <div class="food-item-row" id="food-row-1">
+                        <div class="input-group flex-grow">
+                            <label>Food Item</label>
+                            <input type="text" class="food-item-name" required placeholder="e.g., Apples">
+                        </div>
+                        <div class="input-group width-120">
+                            <label>Quantity</label>
+                            <input type="text" class="food-item-qty" required placeholder="e.g., 2 kg">
+                        </div>
+                    </div>
+
+                    <div class="food-item-row" id="food-row-2">
+                        <div class="input-group flex-grow">
+                            <label>Food Item</label>
+                            <input type="text" class="food-item-name" placeholder="e.g., Cooked Rice">
+                        </div>
+                        <div class="input-group width-120">
+                            <label>Quantity</label>
+                            <input type="text" class="food-item-qty" placeholder="e.g., 5 servin">
+                        </div>
+                    </div>
+                </div>
+                <div class="add-item-link-container">
+                    <button type="button" class="btn-add-item-link" onclick="addFoodItemRow()">
+                        <i data-lucide="plus" style="width: 14px; height: 14px;"></i> Add another item
+                    </button>
+                </div>
+
+                <!-- Section: Select NGO -->
+                <div class="form-section-title">Select NGO</div>
+                <p class="form-section-subtitle">choose a organtion</p>
+                <div class="form-card-box">
+                    <div class="input-group">
+                        <label>Country</label>
+                        <input type="text" id="ngo-country" placeholder="e.g., India" value="India" required>
+                    </div>
+                    <div class="input-group">
+                        <label>State</label>
+                        <input type="text" id="ngo-state" placeholder="e.g., Maharashtra" value="Maharashtra" required>
+                    </div>
+                    <div class="input-group">
+                        <label>District</label>
+                        <input type="text" id="ngo-district" placeholder="e.g., Mumbai City" value="Mumbai City" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Town</label>
+                        <input type="text" id="ngo-town" placeholder="e.g., Bandra" value="Bandra" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Select NGO</label>
+                        <div class="select-wrapper">
+                            <select id="ngo-select-list" required>
+                                <option value="" disabled selected>Select an NGO...</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="select-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit donate-btn-submit">
+                    Donate
+                </button>
+            </form>
+        </section>
+
+        <!-- SCREEN 5: PICKUPS / TRACKS -->
+        <section id="screen-pickups" class="app-screen">
+            <!-- App Top Header -->
+            <header class="app-top-nav-menu">
+                <button class="menu-btn"><i data-lucide="menu"></i></button>
+                <h2>Dalo Roti</h2>
+                <div class="profile-dropdown-wrapper">
+                    <button class="avatar-btn" onclick="toggleProfileDropdown(event)">
+                        <div class="user-avatar-small header-avatar-initial">A</div>
+                    </button>
+                    <div class="profile-dropdown-content">
+                        <div class="dropdown-user-info">
+                            <div class="large-avatar">A</div>
+                            <div class="info-text">
+                                <strong class="dropdown-user-name">Amal</strong>
+                                <span class="dropdown-user-phone">+91 98200 98200</span>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item" onclick="showProfileDetails(event)"><i data-lucide="user"></i> View Profile</a>
+                        <a href="#" class="dropdown-item" onclick="navigateToScreen('donate'); closeAllDropdowns();"><i data-lucide="plus-circle"></i> Donate Food</a>
+                        <a href="#" class="dropdown-item" onclick="navigateToScreen('pickups'); closeAllDropdowns();"><i data-lucide="truck"></i> Track Pickups</a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item logout-item" onclick="logout(); closeAllDropdowns();"><i data-lucide="log-out"></i> Log Out</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="pickups-header-row">
+                <h1>Active Pickup</h1>
+                <span class="badge-transit"><i data-lucide="truck"></i> In Transit</span>
+            </div>
+
+            <!-- Active Pickup Box -->
+            <div class="active-pickup-card">
+                <div class="pickup-card-header">
+                    <div class="meal-icon-box">
+                        <i data-lucide="utensils-crossed"></i>
+                    </div>
+                    <div class="pickup-title-details">
+                        <h4>Fresh Cooked Meals</h4>
+                        <p>50 servings &bull; Prepared 2 hours ago</p>
+                    </div>
+                </div>
+
+                <!-- Destination Card -->
+                <div class="destination-sub-card">
+                    <div class="dest-header">
+                        <i data-lucide="map-pin"></i>
+                        <span>Destination</span>
+                    </div>
+                    <h5>Hope Children's Home</h5>
+                    <p class="dest-address">45 Asha Marg, Near Greenfield Park, Sector 12</p>
+                    <p class="dest-contact">Contact: Priya Sharma (+91 98765 43210)</p>
+                </div>
+
+                <!-- Delivery Status Timeline -->
+                <div class="delivery-timeline">
+                    <h5>DELIVERY STATUS</h5>
+                    
+                    <div class="timeline-nodes-list">
+                        <div class="timeline-node-item checked">
+                            <div class="timeline-bullet"><i data-lucide="check"></i></div>
+                            <div class="timeline-content-box">
+                                <strong>Pickup Requested</strong>
+                                <span class="time-stamp">10:30 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node-item checked">
+                            <div class="timeline-bullet"><i data-lucide="check"></i></div>
+                            <div class="timeline-content-box">
+                                <strong>Food Picked Up</strong>
+                                <span class="time-stamp">11:15 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node-item active-node">
+                            <div class="timeline-bullet"><span class="bullet-inner-dot"></span></div>
+                            <div class="timeline-content-box">
+                                <strong>In Transit</strong>
+                                <span class="time-stamp">Est. Arrival: 11:45 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node-item future">
+                            <div class="timeline-bullet"></div>
+                            <div class="timeline-content-box">
+                                <strong>Delivered</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verification History -->
+            <div class="history-title-row">
+                <h3>Verification History</h3>
+            </div>
+
+            <div class="history-feed">
+                <!-- Card 1 -->
+                <div class="history-card">
+                    <div class="history-image" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&auto=format&fit=crop');">
+                        <span class="proof-badge"><i data-lucide="heart-handshake"></i> Proof</span>
+                    </div>
+                    <div class="history-card-body">
+                        <div class="history-card-header">
+                            <h4>Sunrise Orphanage</h4>
+                            <span class="badge-verified"><i data-lucide="check-circle-2"></i> Verified</span>
+                        </div>
+                        <p class="history-meals">20 kg Rice & Lentils</p>
+                        <p class="history-time">Yesterday, 2:30 PM</p>
+                        <button class="btn-history-action" onclick="showToast('Loading Certificate...', 'success')">View Certificate</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- SCREEN 6: NGOS & SCREEN 7: IMPACT (PLACEHOLDERS) -->
+        <section id="screen-ngos" class="app-screen">
+            <header class="app-top-nav">
+                <div class="top-nav-brand"><h2>Partner NGOs</h2></div>
+            </header>
+            <div class="placeholder-screen-content">
+                <i data-lucide="building-2"></i>
+                <h3>List of Partner NGOs</h3>
+                <p>Showing all active organizations receiving donations.</p>
+                <!-- Dynamic Partner NGO List -->
+                <div id="ngo-partner-list-container" style="width: 100%; display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1rem;">
+                    <!-- Populated dynamically via JS with map-pin icons -->
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-impact" class="app-screen">
+            <header class="app-top-nav">
+                <div class="top-nav-brand"><h2>Join with us</h2></div>
+            </header>
+            
+            <div class="donate-header">
+                <h1>List Your NGO</h1>
+                <p>Register your organization to receive food donations and connect with local donors.</p>
+            </div>
+
+            <form id="ngo-register-form" onsubmit="handleNgoRegister(event)">
+                <div class="form-card-box">
+                    <div class="input-group">
+                        <label for="reg-ngo-name">NGO / Orphanage Name</label>
+                        <input type="text" id="reg-ngo-name" required placeholder="e.g., Mother Care Foundation">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="reg-ngo-phone">Contact Phone Number</label>
+                        <input type="tel" id="reg-ngo-phone" required placeholder="e.g., +91 99887 76655">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reg-ngo-address">Office Address</label>
+                        <input type="text" id="reg-ngo-address" required placeholder="e.g., Worli, Mumbai">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reg-ngo-town">Town/Area</label>
+                        <input type="text" id="reg-ngo-town" required placeholder="e.g., Bandra">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reg-ngo-details">Brief Description</label>
+                        <textarea id="reg-ngo-details" required placeholder="e.g., Caring for 50 orphanage children and providing daily shelters." rows="3"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit donate-btn-submit">
+                    Register NGO
+                </button>
+            </form>
+
+            <!-- Contact Us Section in green box with white font -->
+            <div class="contact-us-box">
+                <h4><i data-lucide="phone-call"></i> Contact Us</h4>
+                <div class="contact-item">
+                    <i data-lucide="phone"></i>
+                    <span>+910987654321</span>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="mail"></i>
+                    <span>dalroti#.com</span>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="map-pin"></i>
+                    <span>13 line, kurlacomplex, bandra east, mumbai, maharastra</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- APP BOTTOM NAVBAR (SHARED) -->
+        <nav class="app-bottom-navbar" id="app-nav-bar">
+            <button class="nav-item active" onclick="navigateToScreen('home')">
+                <i data-lucide="home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" onclick="navigateToScreen('donate')">
+                <i data-lucide="plus-circle"></i>
+                <span>Donate</span>
+            </button>
+            <button class="nav-item" onclick="navigateToScreen('ngos')">
+                <i data-lucide="map"></i>
+                <span>NGOs</span>
+            </button>
+            <button class="nav-item" onclick="navigateToScreen('pickups')">
+                <i data-lucide="truck"></i>
+                <span>Pickups</span>
+            </button>
+            <button class="nav-item" onclick="navigateToScreen('impact')">
+                <i data-lucide="heart-handshake"></i>
+                <span>Join with us</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Profile Modal Overlay -->
+    <div id="profile-modal" class="modal-overlay-card" onclick="closeProfileModal(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>My Profile</h3>
+                <button class="modal-close-btn" onclick="closeProfileModal()"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-main-info">
+                    <div class="profile-page-avatar">A</div>
+                    <h2 class="profile-detail-name">Amal</h2>
+                    <span class="profile-detail-role">Community Donor</span>
+                </div>
+                <div class="profile-details-list">
+                    <div class="detail-row">
+                        <span class="detail-label">Mobile Number</span>
+                        <strong class="detail-val profile-detail-phone">+91 98200 98200</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Office Address</span>
+                        <strong class="detail-val profile-detail-address">13 line, kurlacomplex, bandra east, mumbai, maharastra</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Account Level</span>
+                        <strong class="detail-val">Active Ambassador</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Total Shared</span>
+                        <strong class="detail-val">12 Donations</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast-hidden">
+        <div class="toast-content">
+            <span id="toast-message">Message goes here</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
